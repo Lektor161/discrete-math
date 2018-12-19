@@ -1,6 +1,4 @@
-﻿//#include "stdafx.h"
-//#include <iostream>
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
 #include <queue>
 #include <cmath>
@@ -11,7 +9,6 @@ using namespace std;
 typedef long long int ll;
 
 int n;
-
 vector<int> a;
 
 ifstream fin("partition.in");
@@ -34,8 +31,7 @@ void gen(int p, int sum) {
 	}
 }
 
-int main()
-{
+int main() {
 	fin >> n;
 	a.resize(n);
 	gen(0, 0);

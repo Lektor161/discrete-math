@@ -1,5 +1,4 @@
-﻿//#include "stdafx.h"
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -12,7 +11,7 @@ ofstream fout("part2num.out");
 int main() {
 	string a;
 	fin >> a;
-	int cur=0, n = 0, m = 0;
+	int cur = 0, n = 0, m = 0;
 	ll answ = 0;
 	vector<int> all;
 
@@ -20,8 +19,7 @@ int main() {
 		if (isdigit(a[i])) {
 			cur *= 10;
 			cur += (a[i] - '0');
-		}
-		else {
+		} else {
 			all.push_back(cur);
 			n += cur;
 			cur = 0;
@@ -34,11 +32,12 @@ int main() {
 	m = all.size();
 
 	vector<vector<ll>> dp(n + 1, vector<ll>(n + 1, 0));
-	// stupid dp with sum and first num
+
 	for (int i = 1; i <= n; i++) {
 		for (int j = 1; j <= n; j++) {
-			if (i == j) dp[i][j] = 1;
-			else {
+			if (i == j) {
+				dp[i][j] = 1;
+			} else {
 				for (int d = j; d <= i; d++) {
 					dp[i][j] += dp[i - j][d];
 				}

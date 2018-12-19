@@ -1,12 +1,10 @@
-﻿//#include "stdafx.h"
-#include <fstream>
+﻿#include <fstream>
 #include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
 
 int n, k;
-
 vector<int> p;
 
 ifstream fin("part2sets.in");
@@ -24,8 +22,7 @@ void make_part(int pos, int num) {
 			fout << "\n";
 		}
 		fout << "\n";
-	}
-	else {
+	} else {
 		for (int i = 0; i <= num; i++) {
 			p[pos] = i;
 			if (i == num) make_part(pos + 1, num + 1);

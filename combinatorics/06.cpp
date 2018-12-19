@@ -1,6 +1,4 @@
-﻿//#include "stdafx.h"
-//#include <iostream>
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
 #include <queue>
 #include <cmath>
@@ -8,10 +6,8 @@
 #include <string>
 #include <map>
 using namespace std;
-typedef long long int ll;
 
 int n, ans = 0;
-
 vector<int> a;
 
 ifstream fin("vectors.in");
@@ -28,8 +24,7 @@ void maddde(int p, int c = 0) {
 			fout << endl;
 		}
 		if (check) ans++;
-	}
-	else {
+	} else {
 		a[p] = 0;
 		maddde(p + 1, c);
 		a[p] = 1;
@@ -37,8 +32,7 @@ void maddde(int p, int c = 0) {
 	}
 }
 
-int main()
-{
+int main() {
 	fin >> n;
 	a.resize(n);
 	maddde(0);

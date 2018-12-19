@@ -1,5 +1,4 @@
-﻿//#include "stdafx.h"
-#include <fstream>
+﻿#include <fstream>
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -18,7 +17,6 @@ int main() {
 		j = 0;
 		
 		while (j < all) {
-			
 			for (int t = 0; t < k; t++) {
 				for (int e = 0; e < d; e++) {
 					a[j][i] = t;

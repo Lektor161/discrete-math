@@ -1,6 +1,4 @@
-﻿//#include "stdafx.h"
-//#include <iostream>
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
 #include <queue>
 #include <cmath>
@@ -32,8 +30,7 @@ void gen(int p) {
 	}
 }
 
-int main()
-{
+int main() {
 	fin >> n;
 	a.resize(n);
 	was.resize(n, false);

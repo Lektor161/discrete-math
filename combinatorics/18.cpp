@@ -1,5 +1,4 @@
-﻿//#include "stdafx.h"
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -14,7 +13,6 @@ int main() {
 	int n = s.length();
 	vector<vector<ll>> dp(2 * n + 1, vector<ll>(n+1, 0));
 
-	// stupid dp with len and balance
 	dp[0][0] = 1;
 	for (int i = 0; i < 2 * n; i++) {
 		for (int j = 0; j <= n; j++) {
@@ -29,8 +27,7 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		if (s[i] == '(') {
 			d++;
-		}
-		else {
+		} else {
 			ans += dp[n - i - 1][d + 1];
 			d--;
 		}

@@ -1,5 +1,4 @@
-﻿//#include "stdafx.h"
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
 #include <cmath>
 #include <string>
@@ -11,13 +10,12 @@ using namespace std;
 typedef long long int ll;
 typedef long double ld;
 
-int main()
-{
+int main() {
 	ifstream fin("num2perm.in");
 	ofstream fout("num2perm.out");
 	int n, r; ll p, t;
 	fin >> n >> p;
-	//p--;
+
 	vector<int> por(n + 1);
 	vector<ll> f(n + 1, 1);
 	for (int i = 2; i <= n; i++) f[i] = f[i - 1] * i;

@@ -1,6 +1,4 @@
-﻿//#include "stdafx.h"
-//#include <iostream>
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
 #include <queue>
 #include <cmath>
@@ -13,8 +11,7 @@ typedef long long int ll;
 ifstream fin("choose2num.in");
 ofstream fout("choose2num.out");
 
-int main()
-{
+int main() {
 	int n, k;
 	fin >> n >> k;
 	ll ans = 0;

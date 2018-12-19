@@ -1,6 +1,4 @@
-﻿//#include "stdafx.h"
-//#include <iostream>
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
 #include <queue>
 #include <cmath>

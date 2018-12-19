@@ -1,5 +1,4 @@
-﻿//#include "stdafx.h"
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
 #include <queue>
 #include <cmath>
@@ -8,7 +7,6 @@
 #include <map>
 using namespace std;
 typedef long long int ll;
-
 
 ifstream fin("nextvector.in");
 ofstream fout("nextvector.out");
@@ -25,6 +23,7 @@ void prev(string p) {
 		fout << "-";
 		return;
 	}
+
 	for (int i = 0; i < p.length(); i++) {
 		if (i < ind) fout << p[i];
 		if (i == ind) fout << 0;
@@ -40,10 +39,12 @@ void next(string p) {
 			break;
 		}
 	}
+
 	if (ind == -1) {
 		fout << "-";
 		return;
 	}
+
 	for (int i = 0; i < p.length(); i++) {
 		if (i < ind) fout << p[i];
 		if (i == ind) fout << 1;
@@ -51,8 +52,7 @@ void next(string p) {
 	}
 }
 
-int main()
-{
+int main() {
 	string s;
 	fin >> s;
 	prev(s);

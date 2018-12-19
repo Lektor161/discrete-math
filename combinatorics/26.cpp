@@ -1,6 +1,4 @@
-﻿//#include "stdafx.h"
-#include <fstream>
-//#include <iostream>
+﻿#include <fstream>
 #include <string>
 #include <set>
 #include <vector>
@@ -20,8 +18,7 @@ void read_line(int p) {
 	for (int i = 0; i < c.length(); i++) {
 		if (isdigit(c[i])) {
 			cur = 10 * cur + (c[i] - '0');
-		}
-		else {
+		} else {
 			a[p].push_back(cur);
 			cur = 0;
 		}
@@ -36,9 +33,6 @@ void next() {
 
 	for (int i = k - 1; i >= 0; i--) {
 		if (dels.size() && *(--dels.end()) > a[i].back()) {
-			//can insert smth to this set
-			
-			//lets find min ok elem
 			e = (--dels.end());
 			for (auto it = dels.begin(); it != dels.end(); it++) {
 				if (*(it) > a[i].back()) {
@@ -53,9 +47,6 @@ void next() {
 
 		for (int j = a[i].size() - 1; j >= 0; j--) {
 			if (dels.size() && j && *(--dels.end()) > a[i][j]) {
-				//can change elem
-
-				//lets find min ok elem
 				e = (--dels.end());
 				for (auto it = dels.begin(); it != dels.end(); it++) {
 					if (*(it) > a[i][j]) {
@@ -77,13 +68,10 @@ void next() {
 			if (a[i].size() == 0) a.erase(a.begin() + i);
 		}
 		if (back) break;
-		//??
 	}
 
-	//min lex tail
 	if (dels.empty()) return;
 	for (auto it = dels.begin(); it != dels.end(); it++) {
-		//a[a.size() - 1].push_back(*it);
 		a.push_back({ *it });
 	}
 }

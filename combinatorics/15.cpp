@@ -1,5 +1,4 @@
-﻿//#include "stdafx.h"
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
 #include <queue>
 #include <cmath>
@@ -9,8 +8,7 @@
 using namespace std;
 typedef long long int ll;
 
-int main()
-{
+int main() {
 	ifstream fin("num2choose.in");
 	ofstream fout("num2choose.out");
 	vector<vector<ll>> c_table(31, vector<ll>(31, 0));

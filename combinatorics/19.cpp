@@ -1,5 +1,4 @@
-﻿//#include "stdafx.h"
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -17,7 +16,6 @@ int main() {
 
 	vector<vector<ll>> dp(2 * n + 1, vector<ll>(n + 1, 0));
 
-	// stupid dp with len and d
 	dp[0][0] = 1;
 	for (int i = 0; i < 2 * n; i++) {
 		for (int j = 0; j <= n; j++) {
@@ -29,8 +27,11 @@ int main() {
 	ll d = 0, cur;
 
 	for (int i = 2*n - 1; i >= 0; i--) {
-		if (d < n) cur = dp[i][d + 1] << (i - d - 1) / 2;
-		else cur = 0;
+		if (d < n) {
+			cur = dp[i][d + 1] << (i - d - 1) / 2;
+		} else {
+			cur = 0;
+		}
 
 		if (cur >= k) {
 			ans.push_back('(');
@@ -40,8 +41,11 @@ int main() {
 		}
 		k -= cur;
 
-		if (last_no_friend.length() && d && last_no_friend.back() == '(') cur = dp[i][d - 1] << (i - d + 1) / 2;
-		else cur = 0;
+		if (last_no_friend.length() && d && last_no_friend.back() == '(') {
+			cur = dp[i][d - 1] << (i - d + 1) / 2;
+		} else {
+			cur = 0;
+		}
 		
 		if (cur >= k) {
 			ans.push_back(')');
@@ -52,8 +56,11 @@ int main() {
 		k -= cur;
 
 
-		if (d < n) cur = dp[i][d + 1] << (i - d - 1) / 2;
-		else cur = 0;
+		if (d < n) {
+			cur = dp[i][d + 1] << (i - d - 1) / 2;
+		} else {
+			cur = 0;
+		}
 
 		if (cur >= k) {
 			ans.push_back('[');

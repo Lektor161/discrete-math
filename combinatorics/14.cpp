@@ -1,6 +1,4 @@
-﻿//#include "stdafx.h"
-//#include <iostream>
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
 #include <iomanip>
 #include <algorithm>
@@ -32,7 +30,7 @@ int main() {
 		}
 		t = fact[n - i] / fact[n - k];
 		res += col[q] * t;
-		//cout << col[q] << " " << t << endl;
+
 		for (int j = q; j <= n; j++) col[j]--;
 	}
 	fin.close();

@@ -1,6 +1,4 @@
-﻿//#include "stdafx.h"
-//#include <iostream>
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
 #include <queue>
 #include <cmath>
@@ -32,8 +30,7 @@ void next(vector<int> a) {
 	for (int i = 0; i < n; i++) fout << 0 << " ";
 }
 
-int main()
-{
+int main() {
 	fin >> n;
 	t.resize(n);
 	for (int i = 0; i < n; i++) fin >> t[i];

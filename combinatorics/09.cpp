@@ -1,6 +1,4 @@
-﻿//#include "stdafx.h"
-//#include <iostream>
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
 #include <queue>
 #include <cmath>
@@ -11,7 +9,6 @@ using namespace std;
 typedef long long int ll;
 
 int n;
-
 vector<char> a;
 
 ifstream fin("brackets.in");
@@ -32,8 +29,7 @@ void gen(int p, int bal) {
 	}
 }
 
-int main()
-{
+int main() {
 	fin >> n;
 	n *= 2;
 	a.resize(n);

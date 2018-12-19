@@ -1,17 +1,10 @@
-﻿//#include "stdafx.h"
-//#include <iostream>
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
-#include <queue>
-#include <cmath>
 #include <algorithm>
-#include <string>
 #include <map>
 using namespace std;
-typedef long long int ll;
 
 int n;
-
 vector<vector<int>> ch;
 map <vector<int>, bool> was;
 

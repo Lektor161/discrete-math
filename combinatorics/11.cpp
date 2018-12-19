@@ -1,6 +1,4 @@
-﻿//#include "stdafx.h"
-//#include <iostream>
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
 #include <queue>
 #include <cmath>
@@ -11,7 +9,6 @@ using namespace std;
 typedef long long int ll;
 
 int n;
-
 vector<int> a;
 
 ifstream fin("subsets.in");
@@ -30,8 +27,7 @@ void gen(int p, int fp, int c = 0) {
 	}
 }
 
-int main()
-{
+int main() {
 	fin >> n;
 	a.resize(n);
 	gen(0, 0, 1);
