@@ -1,16 +1,9 @@
-﻿//#include "stdafx.h"
-#include <fstream>
+﻿#include <fstream>
 #include <vector>
-#include <queue>
-#include <cmath>
 #include <algorithm>
-#include <string>
-#include <map>
 using namespace std;
-typedef long long int ll;
 
 int n;
-
 vector<int> a;
 
 ifstream fin("gray.in");
@@ -25,8 +18,7 @@ void maddde(int p) {
 	fout << endl;
 }
 
-int main()
-{
+int main() {
 	fin >> n;
 	a.resize(n);
 	for (int i = 0; i < (1<<n); i++) {
