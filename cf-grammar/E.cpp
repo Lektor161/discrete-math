@@ -69,7 +69,6 @@ int main() {
                 for (int i = 0; i < p; i++) {
                     for (int k = 1; k <= rules[i].second.size(); k++) {
                         bool ok = false;
-
                         for (int j = l; j <= r; j++) {
                             if (rules[i].second[k - 1] >= 'A' && rules[i].second[k - 1] <= 'Z') {
                                 ok |= (h[i][l][j][k - 1] && a[rules[i].second[k - 1] - 'A'][j][r]);
@@ -77,16 +76,12 @@ int main() {
                                 ok |= (h[i][l][j][k - 1] && r - j == 1 && word[j] == rules[i].second[k - 1]);
                             }
                         }
-                        /*if (ok) {
-                            fout << "## " << i << " " << k << ": " << l << " " << r << endl;
-                        }*/
                         if (ok) h[i][l][r][k] = true;
                     }
                 }
 
                 for (int i = 0; i < p; i++) {
                     if (h[i][l][r][rules[i].second.size()]) {
-                        //fout << "!!!! " << i << " " << l << " " << r << endl;
                         a[rules[i].first][l][r] = true;
                     }
                 }
