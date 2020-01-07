@@ -1,6 +1,7 @@
-# Лабораторные работы:
+# Topics:
+1. [Combinatorics](/combinatorics/)
+2. [Automata](/automata/)
+3. [Context-free grammars](/cf-grammar/)
+4. [Hamiltonian cycles](/hamilton/)
+5. [Matroids](/matroids/)
 
-1. Комбинаторика
-2. Автоматы
-3. Контекстно-свободные грамматики
-4. Гамильтоновы циклы
