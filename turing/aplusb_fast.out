@@ -1,0 +1,60 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 0 -> s 0 >
+s 1 -> s 1 >
+s a -> s a >
+s b -> s b >
+s + -> rhs + >
+
+rhs 0 -> rhs 0 >
+rhs 1 -> rhs 1 >
+rhs a -> add a <
+rhs b -> add b <
+rhs _ -> add _ <
+
+add 0 -> skipz a <
+add 1 -> skipo b <
+add + -> clear _ >
+
+skipz + -> putz + <
+skipz 0 -> skipz 0 <
+skipz 1 -> skipz 1 <
+
+skipo + -> puto + <
+skipo 0 -> skipo 0 <
+skipo 1 -> skipo 1 <
+
+putz a -> putz a <
+putz b -> putz b <
+putz 0 -> s a >
+putz 1 -> s b >
+putz _ -> s a >
+
+puto a -> puto a <
+puto b -> puto b <
+puto 0 -> s b >
+puto 1 -> appendo a <
+puto _ -> s b >
+
+appendo 0 -> s 1 >
+appendo 1 -> appendo 0 <
+appendo _ -> s 1 >
+
+clear _ -> skip _ <
+clear a -> clear _ >
+clear b -> clear _ >
+
+skip _ -> skip _ <
+skip 0 -> decoder 0 ^
+skip 1 -> decoder 1 ^
+skip a -> decoder a ^
+skip b -> decoder b ^
+
+decoder 0 -> decoder 0 <
+decoder 1 -> decoder 1 <
+decoder a -> decoder 0 <
+decoder b -> decoder 1 <
+decoder _ -> ac _ >

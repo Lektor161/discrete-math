@@ -1,0 +1,28 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 0 -> s 0 >
+s 1 -> s 1 >
+s _ -> append $ <
+
+append 0 -> appendz $ >
+append 1 -> appendo $ >
+append _ -> finish _ >
+
+appendz $ -> appendz 0 >
+appendz 0 -> appendz 0 >
+appendz 1 -> appendz 1 >
+appendz _ -> ret 0 <
+
+appendo $ -> appendo 1 >
+appendo 0 -> appendo 0 >
+appendo 1 -> appendo 1 >
+appendo _ -> ret 1 <
+
+ret 0 -> ret 0 <
+ret 1 -> ret 1 <
+ret $ -> append $ <
+
+finish $ -> ac _ >

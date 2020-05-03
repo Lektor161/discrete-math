@@ -1,0 +1,36 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 0 -> appendz _ >
+s 1 -> appendo _ >
+
+appendz _ -> helpz # >
+appendz # -> helpz # >
+appendz 0 -> appendz 0 >
+appendz 1 -> appendo 0 >
+
+appendo _ -> helpo # >
+appendo # -> helpo # >
+appendo 0 -> appendz 1 >
+appendo 1 -> appendo 1 >
+
+helpz _ -> ret 0 <
+helpz 0 -> helpz 0 >
+helpz 1 -> helpz 1 >
+
+helpo _ -> ret 1 <
+helpo 0 -> helpo 0 >
+helpo 1 -> helpo 1 >
+
+ret _ -> s _ >
+ret 0 -> ret 0 <
+ret 1 -> ret 1 <
+ret # -> checker # <
+
+checker _ -> finish _ >
+checker 0 -> ret 0 <
+checker 1 -> ret 1 <
+
+finish # -> ac _ >

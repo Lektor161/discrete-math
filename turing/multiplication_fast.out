@@ -1,0 +1,122 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 0 -> io 0 <
+s 1 -> io 1 <
+
+io _ -> io2 = <
+io2 _ -> skip 0 >
+
+skip 0 -> skip 0 >
+skip 1 -> skip 1 >
+skip a -> skip a >
+skip b -> skip b >
+skip * -> skip * >
+skip = -> skip = >
+skip _ -> mul _ <
+
+mul 0 -> propo_skip _ <
+mul 1 -> gotolhs _ < 
+mul * -> clean _ <
+
+propo_skip 0 -> propo_skip 0 <
+propo_skip 1 -> propo_skip 1 <
+propo_skip * -> propo_skip * <
+propo_skip = -> propo = <
+
+propo a -> propo a <
+propo b -> propo b <
+propo 0 -> skip a >
+propo 1 -> skip b >
+propo _ -> skip a >
+
+clean 0 -> clean _ <
+clean 1 -> clean _ <
+clean = -> decoder _ <
+
+decoder a -> decoder 0 <
+decoder b -> decoder 1 <
+decoder 0 -> decoder 0 <
+decoder 1 -> decoder 1 <
+decoder _ -> reduce _ >
+
+reduce 0 -> reduce _ >
+reduce 1 -> ac 1 ^
+reduce _ -> ac 0 ^
+
+decoder2 a -> decoder2 a <
+decoder2 b -> decoder2 b <
+decoder2 0 -> decoder22 a <
+decoder2 1 -> decoder22 b <
+decoder2 c -> decoder22 a <
+decoder2 d -> decoder22 b <
+decoder2 _ -> gotodeclhs a >
+
+decoder22 c -> decoder22 0 <
+decoder22 d -> decoder22 1 <
+decoder22 a -> decoder22 a <
+decoder22 b -> decoder22 b <
+decoder22 0 -> decoder22 0 <
+decoder22 1 -> decoder22 1 <
+decoder22 _ -> gotodeclhs _ >
+
+gotodeclhs 0 -> gotodeclhs 0 >
+gotodeclhs 1 -> gotodeclhs 1 >
+gotodeclhs a -> gotodeclhs a >
+gotodeclhs b -> gotodeclhs b >
+gotodeclhs = -> declhs = >
+
+declhs a -> declhs 0 >
+declhs b -> declhs 1 >
+declhs * -> skip * >
+
+gotolhs 0 -> gotolhs 0 <
+gotolhs 1 -> gotolhs 1 <
+gotolhs * -> add * <
+
+add 0 -> skipz a <
+add 1 -> skipo b <
+add = -> decoder2 = <
+
+skipz 0 -> skipz 0 <
+skipz 1 -> skipz 1 <
+skipz = -> addz = <
+
+skipo 0 -> skipo 0 <
+skipo 1 -> skipo 1 <
+skipo = -> addo = <
+
+addz a -> addz a <
+addz b -> addz b <
+addz c -> addz c <
+addz d -> addz d <
+addz 0 -> retlhs c >
+addz 1 -> retlhs d >
+addz _ -> retlhs c >
+
+addo a -> addo a <
+addo b -> addo b <
+addo c -> addo c <
+addo d -> addo d <
+addo 0 -> retlhs d >
+addo 1 -> appendo c <
+addo _ -> retlhs d >
+
+appendo 0 -> retlhs 1 >
+appendo 1 -> appendo 0 <
+appendo _ -> retlhs 1 >
+
+retlhs 0 -> retlhs 0 >
+retlhs 1 -> retlhs 1 >
+retlhs a -> retlhs a >
+retlhs b -> retlhs b >
+retlhs c -> retlhs c >
+retlhs d -> retlhs d >
+retlhs = -> retl2 = >
+
+retl2 0 -> retl2 0 >
+retl2 1 -> retl2 1 >
+retl2 a -> add a <
+retl2 b -> add b <

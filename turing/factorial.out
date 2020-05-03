@@ -1,0 +1,221 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 0 -> iof 0 <
+s 1 -> iof 1 <
+
+iof _ -> fact $ >
+
+fact 0 -> fact 0 >
+fact 1 -> fact 1 >
+fact a -> fcopy a <
+fact b -> fcopy b <
+fact F -> fcopy F <
+fact _ -> fcopy F <
+
+fcopy 0 -> fcopyz a <
+fcopy 1 -> fcopyo b <
+fcopy $ -> fcopyhelp $ >
+
+fcopyz 0 -> fcopyz 0 <
+fcopyz 1 -> fcopyz 1 <
+fcopyz $ -> fcopyz $ <
+fcopyz _ -> fret 0 >
+
+fcopyo 0 -> fcopyo 0 <
+fcopyo 1 -> fcopyo 1 <
+fcopyo $ -> fcopyo $ <
+fcopyo _ -> fret 1 >
+
+fret 0 -> fret 0 >
+fret 1 -> fret 1 >
+fret $ -> fact $ >
+
+fcopyhelp a -> fcopyhelp 0 >
+fcopyhelp b -> fcopyhelp 1 >
+fcopyhelp 0 -> fcopyhelp 0 <
+fcopyhelp 1 -> fcopyhelp 1 <
+fcopyhelp $ -> fcopyhelp $ <
+fcopyhelp * -> gotoio * <
+fcopyhelp F -> checker F <
+fcopyhelp _ -> fonefiller * <
+
+checker 0 -> checker 0 <
+checker 1 -> fcopyhelp 1 <
+checker $ -> lastclearr _ >
+
+lastclearr 0 -> lastclearr _ >
+lastclearr F -> lastclearl _ <
+lastclearl _ -> lastclearl _ <
+lastclearl 0 -> lastclearl _ <
+lastclearl * -> start _ <
+
+start _ -> ac _ >
+start 0 -> start 0 <
+start 1 -> start 1 <
+
+fonefiller _ -> io 1 <
+
+fiterhelp 0 -> fiterhelp 0 >
+fiterhelp 1 -> fiterhelp 1 >
+fiterhelp _ -> fiterhelp _ >
+fiterhelp * -> fiterhelp * >
+fiterhelp $ -> fiterh2 $ >
+ 
+fiterh2 0 -> fiterh2 0 >
+fiterh2 1 -> fiterh2 1 >
+fiterh2 F -> fsub2 F <
+ 
+fsub2 0 -> fsub2 1 <
+fsub2 1 -> fiter 0 <
+ 
+fiter 0 -> fiter 0 <
+fiter 1 -> fiter 1 <
+fiter $ -> fact $ >
+
+gotoio 0 -> gotoio 0 <
+gotoio 1 -> gotoio 1 <
+gotoio _ -> io _ ^
+
+io _ -> io2 = <
+io2 _ -> skip 0 >
+ 
+skip 0 -> skip 0 >
+skip 1 -> skip 1 >
+skip a -> skip a >
+skip b -> skip b >
+skip * -> skip * >
+skip = -> skip = >
+skip _ -> mul _ <
+skip $ -> mul $ <
+ 
+mul 0 -> propo_skip _ <
+mul 1 -> gotolhs _ < 
+mul * -> clean * <
+ 
+propo_skip 0 -> propo_skip 0 <
+propo_skip 1 -> propo_skip 1 <
+propo_skip * -> propo_skip * <
+propo_skip = -> propo = <
+ 
+propo a -> propo a <
+propo b -> propo b <
+propo 0 -> skip a >
+propo 1 -> skip b >
+propo _ -> skip a >
+ 
+clean 0 -> clean _ <
+clean 1 -> clean _ <
+clean = -> decoder _ <
+ 
+decoder a -> decoder 0 <
+decoder b -> decoder 1 <
+decoder 0 -> decoder 0 <
+decoder 1 -> decoder 1 <
+decoder _ -> reduce # >
+ 
+reduce 0 -> reduce _ >
+reduce 1 -> gotomove 1 ^
+reduce _ -> gotomove 0 ^
+
+decoder2 a -> decoder2 a <
+decoder2 b -> decoder2 b <
+decoder2 0 -> decoder22 a <
+decoder2 1 -> decoder22 b <
+decoder2 c -> decoder22 a <
+decoder2 d -> decoder22 b <
+decoder2 _ -> gotodeclhs a >
+ 
+decoder22 c -> decoder22 0 <
+decoder22 d -> decoder22 1 <
+decoder22 a -> decoder22 a <
+decoder22 b -> decoder22 b <
+decoder22 0 -> decoder22 0 <
+decoder22 1 -> decoder22 1 <
+decoder22 _ -> gotodeclhs _ >
+ 
+gotodeclhs 0 -> gotodeclhs 0 >
+gotodeclhs 1 -> gotodeclhs 1 >
+gotodeclhs a -> gotodeclhs a >
+gotodeclhs b -> gotodeclhs b >
+gotodeclhs = -> declhs = >
+ 
+declhs a -> declhs 0 >
+declhs b -> declhs 1 >
+declhs * -> skip * >
+ 
+gotolhs 0 -> gotolhs 0 <
+gotolhs 1 -> gotolhs 1 <
+gotolhs * -> add * <
+ 
+add 0 -> skipz a <
+add 1 -> skipo b <
+add = -> decoder2 = <
+ 
+skipz 0 -> skipz 0 <
+skipz 1 -> skipz 1 <
+skipz = -> addz = <
+ 
+skipo 0 -> skipo 0 <
+skipo 1 -> skipo 1 <
+skipo = -> addo = <
+ 
+addz a -> addz a <
+addz b -> addz b <
+addz c -> addz c <
+addz d -> addz d <
+addz 0 -> retlhs c >
+addz 1 -> retlhs d >
+addz _ -> retlhs c >
+ 
+addo a -> addo a <
+addo b -> addo b <
+addo c -> addo c <
+addo d -> addo d <
+addo 0 -> retlhs d >
+addo 1 -> appendo c <
+addo _ -> retlhs d >
+ 
+appendo 0 -> retlhs 1 >
+appendo 1 -> appendo 0 <
+appendo _ -> retlhs 1 >
+ 
+retlhs 0 -> retlhs 0 >
+retlhs 1 -> retlhs 1 >
+retlhs a -> retlhs a >
+retlhs b -> retlhs b >
+retlhs c -> retlhs c >
+retlhs d -> retlhs d >
+retlhs = -> retl2 = >
+ 
+retl2 0 -> retl2 0 >
+retl2 1 -> retl2 1 >
+retl2 a -> add a <
+retl2 b -> add b <
+
+gotomove 0 -> gotomove 0 >
+gotomove 1 -> gotomove 1 >
+gotomove _ -> move _ <
+
+move 0 -> movez _ >
+move 1 -> moveo _ >
+
+movez _ -> movez _ >
+movez * -> putz * <
+movez 0 -> putz 0 <
+movez 1 -> putz 1 <
+
+moveo _ -> moveo _ >
+moveo * -> puto * <
+moveo 0 -> puto 0 <
+moveo 1 -> puto 1 <
+
+putz _ -> finder 0 <
+puto _ -> finder 1 <
+
+finder _ -> finder _ <
+finder 0 -> move 0 ^
+finder 1 -> move 1 ^
+finder # -> fiterhelp _ >

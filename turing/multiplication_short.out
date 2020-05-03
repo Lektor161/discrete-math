@@ -1,0 +1,96 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 0 -> io 0 <
+s 1 -> io 1 <
+
+io _ -> young_mula_baby # >
+
+young_mula_baby 0 -> young_mula_baby 0 >
+young_mula_baby 1 -> young_mula_baby 1 >
+young_mula_baby a -> copylhs a <
+young_mula_baby b -> copylhs b <
+young_mula_baby * -> copylhs * <
+
+copylhs 0 -> copyz a <
+copylhs 1 -> copyo b <
+copylhs # -> copyhelp # >
+
+copyz 0 -> copyz 0 <
+copyz 1 -> copyz 1 <
+copyz # -> copyz # <
+copyz _ -> ret 0 >
+
+copyo 0 -> copyo 0 <
+copyo 1 -> copyo 1 <
+copyo # -> copyo # <
+copyo _ -> ret 1 >
+
+copyhelp a -> copyhelp 0 >
+copyhelp b -> copyhelp 1 >
+copyhelp 0 -> copyhelp 0 <
+copyhelp 1 -> copyhelp 1 <
+copyhelp * -> copyhelp * <
+copyhelp # -> copyhelp # <
+copyhelp + -> pret + >
+copyhelp _ -> zerofiller + <
+
+zerofiller _ -> zerofiller 0 >
+zerofiller + -> iterhelp + >
+
+ret 0 -> ret 0 >
+ret 1 -> ret 1 >
+ret * -> ret * >
+ret # -> young_mula_baby # >
+
+pret 0 -> pret 0 >
+pret 1 -> pret 1 >
+pret + -> pret + >
+pret # -> sub # <
+
+sub 0 -> sub 1 <
+sub 1 -> goadd 0 <
+sub + -> iterhelp + >
+
+goadd 0 -> goadd 0 <
+goadd 1 -> goadd 1 <
+goadd + -> add + <
+
+add _ -> pret 1 >
+add 0 -> pret 1 >
+add 1 -> add 0 <
+
+iterhelp 0 -> iterhelp _ >
+iterhelp 1 -> iterhelp _ >
+iterhelp # -> iterh2 # >
+
+iterh2 0 -> iterh2 0 >
+iterh2 1 -> iterh2 1 >
+iterh2 * -> iterh2 * >
+iterh2 _ -> sub2 _ <
+
+sub2 0 -> sub2 1 <
+sub2 1 -> iter 0 <
+sub2 * -> goclear * >
+
+iter 0 -> iter 0 <
+iter 1 -> iter 1 <
+iter * -> iter * <
+iter # -> young_mula_baby # >
+
+goclear 0 -> goclear 0 >
+goclear 1 -> goclear 1 >
+goclear _ -> clear _ <
+
+clear 0 -> clear _ <
+clear 1 -> clear _ <
+clear * -> clear _ <
+clear # -> clear _ <
+clear _ -> clear _ <
+clear + -> start _ <
+
+start 0 -> start 0 <
+start 1 -> start 1 <
+start _ -> ac _ >

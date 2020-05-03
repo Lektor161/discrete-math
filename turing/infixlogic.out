@@ -1,0 +1,88 @@
+2
+S 0 _ -> io 0 ^ ( >
+S 1 _ -> io 1 ^ ( >
+S ( _ -> io ( ^ ( >
+
+io 0 _ -> io _ > 0 >
+io 1 _ -> io _ > 1 >
+io o _ -> io _ > o >
+io a _ -> io _ > a >
+io ( _ -> io _ > ( >
+io ) _ -> io _ > ) >
+io _ _ -> ret _ ^ ) <
+
+ret _ 0 -> ret _ ^ 0 <
+ret _ 1 -> ret _ ^ 1 <
+ret _ o -> ret _ ^ o <
+ret _ a -> ret _ ^ a <
+ret _ ( -> ret _ ^ ( <
+ret _ ) -> ret _ ^ ) <
+ret _ # -> ret _ ^ # <
+ret _ _ -> begin _ ^ _ >
+
+begin _ 0 -> begin _ ^ 0 >
+begin _ 1 -> begin _ ^ 1 >
+begin _ o -> begin _ ^ o >
+begin _ a -> begin _ ^ a >
+begin _ ( -> expr _ ^ ( >
+begin _ # -> begin _ ^ # >
+begin _ _ -> find _ ^ _ <
+
+looko _ 0 -> looko _ ^ 0 >
+looko _ 1 -> looko _ ^ 1 >
+looko _ o -> looko _ ^ o >
+looko _ a -> looko _ ^ a >
+looko _ ( -> expr _ ^ ( >
+looko _ ) -> looko _ ^ ) >
+looko _ # -> looko _ ^ # >
+looko _ _ -> ret _ ^ _ <
+
+expr _ 0 -> expr _ ^ 0 >
+expr _ 1 -> expr _ ^ 1 >
+expr _ o -> expr _ ^ o >
+expr _ a -> expr _ ^ a >
+expr _ ( -> expr _ ^ ( >
+expr _ ) -> prioreval _ ^ ) ^
+expr _ # -> expr _ ^ # >
+
+prioreval _ 0 -> prioreval _ ^ 0 <
+prioreval _ 1 -> prioreval _ ^ 1 <
+prioreval _ o -> prioreval _ ^ o <
+prioreval _ a -> and _ ^ # <
+prioreval _ ( -> eval _ ^ # >
+prioreval _ ) -> prioreval _ ^ $ <
+prioreval _ # -> prioreval _ ^ # <
+
+and _ 0 -> andl _ ^ # >
+and _ 1 -> andr _ ^ # >
+and _ # -> and _ ^ # <
+
+andl _ 0 -> prioreval _ ^ 0 <
+andl _ 1 -> prioreval _ ^ 0 <
+andl _ # -> andl _ ^ # >
+
+andr _ 0 -> prioreval _ ^ 0 <
+andr _ 1 -> prioreval _ ^ 1 <
+andr _ # -> andr _ ^ # >
+
+eval _ 0 -> eval _ ^ 0 >
+eval _ 1 -> eval _ ^ 1 >
+eval _ o -> or _ ^ # <
+eval _ # -> eval _ ^ # >
+eval _ $ -> looko _ ^ # >
+
+or _ 0 -> orl _ ^ # >
+or _ 1 -> orr _ ^ # >
+or _ # -> or _ ^ # <
+
+orl _ 0 -> eval _ ^ 0 >
+orl _ 1 -> eval _ ^ 1 >
+orl _ # -> orl _ ^ # >
+
+orr _ 0 -> eval _ ^ 1 >
+orr _ 1 -> eval _ ^ 1 >
+orr _ # -> orr _ ^ # >
+
+find _ 0 -> AC 0 ^ _ ^
+find _ 1 -> AC 1 ^ _ ^
+find _ # -> find _ ^ # <

@@ -1,0 +1,37 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s _ -> ac _ ^
+s ( -> fillb ( < 
+s ) -> rj ) ^
+
+fillb _ -> fille # >
+
+fille ( -> fille ( >
+fille ) -> fille ) >
+fille _ -> ret $ <
+
+ret ) -> ret ) <
+ret ( -> ret ( <
+ret # -> reduce # >
+
+reduce $ -> checker $ <
+reduce ( -> reduce ( >
+reduce ) -> rem _ <
+reduce _ -> reduce _ >
+
+rem _ -> rem _ <
+rem # -> rj _ ^
+rem ( -> skip _ ^
+
+skip _ -> skip _ >
+skip ( -> skip ( >
+skip ) -> reduce ) ^
+skip $ -> checker $ <
+
+checker # -> ac _ ^
+checker _ -> checker _ <
+checker ( -> rj ( ^
+checker ) -> rj ) ^

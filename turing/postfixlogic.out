@@ -1,0 +1,23 @@
+2
+S 0 _ -> S 0 > 0 >
+S 1 _ -> S 1 > 1 >
+S o _ -> calc o ^ _ ^
+S a _ -> calc a ^ _ ^
+S _ _ -> checker _ ^ _ <
+
+calc o _ -> calc o ^ _ <
+calc o 0 -> S o > _ ^
+calc o 1 -> verdo o ^ _ <
+
+calc a _ -> calc a ^ _ <
+calc a 0 -> verdz a ^ _ <
+calc a 1 -> S a > _ ^
+
+verdz a 0 -> S a > 0 >
+verdz a 1 -> S a > 0 >
+
+verdo o 0 -> S o > 1 >
+verdo o 1 -> S o > 1 >
+
+checker _ 0 -> AC 0 ^ 0 ^
+checker _ 1 -> AC 1 ^ 1 ^

@@ -1,0 +1,61 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 0 -> lhs_changer 0 ^
+s 1 -> lhs_changer 1 ^
+
+lhs_changer 0 -> skip a >
+lhs_changer 1 -> skip b >
+lhs_changer < -> lookup < >
+
+skip 0 -> skip 0 >
+skip 1 -> skip 1 >
+skip < -> rhs_changer < >
+
+rhs_changer _ -> rj len ^
+rhs_changer a -> rhs_changer a >
+rhs_changer b -> rhs_changer b >
+rhs_changer 0 -> ret a <
+rhs_changer 1 -> ret b <
+
+ret a -> ret a <
+ret b -> ret b <
+ret < -> ret2 < <
+
+ret2 0 -> ret2 0 <
+ret2 1 -> ret2 1 <
+ret2 a -> lhs_changer a >
+ret2 b -> lhs_changer b >
+
+lookup a -> lookup a >
+lookup b -> lookup b >
+lookup 0 -> ac len ^
+lookup 1 -> ac len ^
+lookup _ -> start _ <
+
+start a -> start a <
+start b -> start b <
+start < -> start < <
+start _ -> compare _ >
+
+compare a -> skipa _ >
+compare b -> skipb _ >
+compare < -> rj eq ^
+
+skipa a -> skipa a >
+skipa b -> skipa b >
+skipa < -> looka < >
+
+skipb a -> skipb a >
+skipb b -> skipb b >
+skipb < -> lookb < >
+
+looka < -> looka < >
+looka a -> start < <
+looka b -> ac _ ^
+
+lookb < -> lookb < >
+lookb a -> rj _ ^
+lookb b -> start < <

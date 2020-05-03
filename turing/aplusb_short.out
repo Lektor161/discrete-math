@@ -1,0 +1,29 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 0 -> s 0 >
+s 1 -> s 1 >
+s + -> s + >
+s _ -> sub _ <
+
+sub 0 -> sub 1 <
+sub 1 -> ret 0 <
+sub + -> fill $ >
+
+add _ -> s 1 >
+add 0 -> s 1 >
+add 1 -> add 0 <
+
+ret 0 -> ret 0 <
+ret 1 -> ret 1 <
+ret + -> add + <
+
+fill 1 -> fill $ >
+fill _ -> clean _ <
+
+clean $ -> clean _ <
+clean 0 -> clean 0 <
+clean 1 -> clean 1 <
+clean _ -> ac _ >

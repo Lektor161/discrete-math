@@ -1,0 +1,54 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 0 -> lhs 0 ^
+s 1 -> lhs 1 ^
+
+lhs 0 -> rskip a >
+lhs 1 -> rskip b >
+lhs a -> rneg a ^
+lhs b -> rneg b ^
+
+rhs 0 -> lskip a <
+rhs 1 -> lskip b <
+rhs a -> rj _ ^
+rhs b -> rj _ ^
+
+rskip 0 -> rskip 0 >
+rskip 1 -> rskip 1 >
+rskip a -> rhs a <
+rskip b -> rhs b <
+rskip _ -> rhs _ <
+
+lskip 0 -> lskip 0 <
+lskip 1 -> lskip 1 <
+lskip a -> lhs a >
+lskip b -> lhs b >
+lskip _ -> lhs _ >
+
+skip ok -> skip ok >
+skip 0 -> skip 0 >
+skip 1 -> skip 1 >
+skip _ -> checker _ <
+
+rneg a -> rneg 0 >
+rneg b -> rneg 1 >
+rneg _ -> checker _ <
+
+checker 0 -> looka _ <
+checker 1 -> lookb _ <
+checker ok -> ac _ ^
+
+looka 0 -> looka 0 <
+looka 1 -> looka 1 <
+looka a -> skip ok >
+looka b -> rj _ ^
+looka ok -> looka ok <
+
+lookb 0 -> lookb 0 <
+lookb 1 -> lookb 1 <
+lookb a -> rj _ ^
+lookb b -> skip ok >
+lookb ok -> lookb ok <
